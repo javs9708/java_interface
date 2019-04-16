@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -106,6 +107,7 @@ public class server
             }
             jsonAirlines = new String[c];
             int i=0;
+            File fichero = new File(".");
             for (JsonElement obj : gsonArr) {                      
                 // Object of array
                 JsonObject gsonObj = obj.getAsJsonObject();     
@@ -114,7 +116,7 @@ public class server
                 name_airline = gsonObj.get("nombre_aerolinea").getAsString();
                 jsonAirlines[i]=name_airline;
                 i++;
-                writer = new PrintWriter("./src/files/ink"+name_airline +".rdp", "UTF-8");
+                writer = new PrintWriter(fichero.getAbsolutePath()+"/build/classes/files/ink"+name_airline +".rdp", "UTF-8");
                 // Primitives elements of object                
                 fulladdress = gsonObj.get("direccion").getAsString();
                 credentials = gsonObj.get("credenciales").getAsString();
