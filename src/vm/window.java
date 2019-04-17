@@ -16,12 +16,14 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-public class window extends javax.swing.JFrame implements ActionListener, Runnable{
+public class window extends javax.swing.JFrame
+{
     
     JButton a;
     JButton b;
     JButton c;
     JButton d;
+
     
     Toolkit t = Toolkit.getDefaultToolkit();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -30,16 +32,17 @@ public class window extends javax.swing.JFrame implements ActionListener, Runnab
 
     File fichero = new File(".");
         
-    public window() throws FileNotFoundException, UnsupportedEncodingException  {
+    public window() throws FileNotFoundException, UnsupportedEncodingException  
+    {
         this.setUndecorated(true);
         initComponents();         
         //Color redColor = new Color(78,75,75);   
         
         server s = new server();
         s.get_json();    
-        
-      
-        if(s.jsonAirlines.length!=0){
+       
+        if(s.json_airlines.length!=0)
+        {
             JLabel titleLabel;
             JLabel icono;
             
@@ -58,7 +61,8 @@ public class window extends javax.swing.JFrame implements ActionListener, Runnab
             this.add(icono);
             
         }
-        else{
+        else
+        {
             
             this.setIconImage(new ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/InkIcon.png")).getImage()); 
             this.getContentPane().setBackground(Color.white);
@@ -80,300 +84,163 @@ public class window extends javax.swing.JFrame implements ActionListener, Runnab
             this.add(icono);
         }
         
-        for (int i=0;i<s.jsonAirlines.length;i++) {  
-            if(s.jsonAirlines.length==4){
-                switch(s.jsonAirlines[i]){
-                    case "airFrance":
-                        a=new JButton("");
-                        a.setBounds(ancho/2+40,alto/2-100,340,100);
-                        a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
-                        a.setBorder(new LineBorder(Color.BLACK));
-                        a.setBackground(Color.white);
-                        add(a);
-                        a.addActionListener(this);
-                        break;
-                    case "avianca":
-                        b=new JButton("");
-                        b.setBounds(ancho/2+40,alto/2+50,340,100);
-                        b.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/av.png")));
-                        b.setBorder(new LineBorder(Color.BLACK));
-                        b.setBackground(Color.white);
-                        add(b);
-                        b.addActionListener(this);
-                        break;
-                    case "klm":
-                        c=new JButton("");
-                        c.setBounds(ancho/2-350,alto/2+50,340,100);
-                        c.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/KLM.jpg")));
-                        c.setBorder(new LineBorder(Color.BLACK));
-                        c.setBackground(Color.white);
-                        add(c);
-                        c.addActionListener(this);
-                        break;
-                    case "aeroMexico":
-                        d=new JButton("");
-                        d.setBounds(ancho/2-350,alto/2-100,340,100);
-                        d.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/aeroMexico.png")));
-                        d.setBorder(new LineBorder(Color.BLACK));
-                        d.setBackground(Color.white);
-                        add(d);
-                        d.addActionListener(this);
-                        break;
-                }
-            }
-            if(s.jsonAirlines.length==3){
-                if(i==0) {
-                     if(s.jsonAirlines[i].equals("airFrance")){
-                        a=new JButton("");
-                        a.setBounds(ancho/2-170,alto/2-60,340,100);
-                        a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
-                        a.setBorder(new LineBorder(Color.BLACK));
-                        a.setBackground(Color.white);
-                        add(a);
-                        a.addActionListener(this);                        
-                     }
-                     if(s.jsonAirlines[i].equals("avianca")){
-                        b=new JButton("");
-                        b.setBounds(ancho/2-170,alto/2-60,340,100);
-                        b.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/av.png")));
-                        b.setBorder(new LineBorder(Color.BLACK));
-                        b.setBackground(Color.white);
-                        add(b);
-                        b.addActionListener(this);                        
-                     }
-                     if(s.jsonAirlines[i].equals("klm")){
-                        c=new JButton("");
-                        c.setBounds(ancho/2-170,alto/2-60,340,100);
-                        c.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/KLM.jpg")));
-                        c.setBorder(new LineBorder(Color.BLACK));
-                        c.setBackground(Color.white);
-                        add(c);
-                        c.addActionListener(this);                        
-                     }
-                     if(s.jsonAirlines[i].equals("aeroMexico")){
-                        d=new JButton("");
-                        d.setBounds(ancho/2-170,alto/2-60,340,100);
-                        d.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/aeroMexico.png")));
-                        d.setBorder(new LineBorder(Color.BLACK));
-                        d.setBackground(Color.white);
-                        add(d);
-                        d.addActionListener(this);                        
-                     }
-                }
-                if(i==1){ 
-
-                    if(s.jsonAirlines[i].equals("airFrance")){
-                        a=new JButton("");
-                        a.setBounds(ancho/2-520,alto/2-60,340,100);
-                        a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
-                        a.setBorder(new LineBorder(Color.BLACK));
-                        a.setBackground(Color.white);
-                        add(a);
-                        a.addActionListener(this);
-                    }
-                    
-                    if(s.jsonAirlines[i].equals("avianca")){
-                        b=new JButton("");
-                        b.setBounds(ancho/2-520,alto/2-60,340,100);
-                        b.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/av.png")));
-                        b.setBorder(new LineBorder(Color.BLACK));
-                        b.setBackground(Color.white);
-                        add(b);
-                        b.addActionListener(this);
-                    }
-                    
-                    if(s.jsonAirlines[i].equals("klm")){
-                        c=new JButton("");
-                        c.setBounds(ancho/2-520,alto/2-60,340,100);
-                        c.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/KLM.jpg")));
-                        c.setBorder(new LineBorder(Color.BLACK));
-                        c.setBackground(Color.white);
-                        add(c);
-                        c.addActionListener(this);
-                    }
-                    
-                    if(s.jsonAirlines[i].equals("aeroMexico")){
-                        d=new JButton("");
-                        d.setBounds(ancho/2-520,alto/2-60,340,100);
-                        d.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/aeroMexico.png")));
-                        d.setBorder(new LineBorder(Color.BLACK));
-                        d.setBackground(Color.white);
-                        add(d);
-                        d.addActionListener(this);
-                    }
-                }
-                    if(i==2){
-                        if(s.jsonAirlines[i].equals("airFrance")){
-                            a=new JButton("");
-                            a.setBounds(ancho/2+180,alto/2-60,340,100);
-                            a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
-                            a.setBorder(new LineBorder(Color.BLACK));
-                            a.setBackground(Color.white);
-                            add(a);
-                            a.addActionListener(this);
-                        }
-                    
-                        if(s.jsonAirlines[i].equals("avianca")){
-                            b=new JButton("");
-                            b.setBounds(ancho/2+180,alto/2-60,340,100);
-                            b.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/av.png")));
-                            b.setBorder(new LineBorder(Color.BLACK));
-                            b.setBackground(Color.white);
-                            add(b);
-                            b.addActionListener(this);
-                        }
-
-                        if(s.jsonAirlines[i].equals("klm")){
-                            c=new JButton("");
-                            c.setBounds(ancho/2+180,alto/2-60,340,100);
-                            c.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/KLM.jpg")));
-                            c.setBorder(new LineBorder(Color.BLACK));
-                            c.setBackground(Color.white);
-                            add(c);
-                            c.addActionListener(this);
-                        }
-
-                        if(s.jsonAirlines[i].equals("aeroMexico")){
-                            d=new JButton("");
-                            d.setBounds(ancho/2+180,alto/2-60,340,100);
-                            d.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/aeroMexico.png")));
-                            d.setBorder(new LineBorder(Color.BLACK));
-                            d.setBackground(Color.white);
-                            add(d);
-                            d.addActionListener(this);
-                        }                       
-                }
-            }
-            
-            if(s.jsonAirlines.length==2){                      
-                if(i==0){                  
-                    if(s.jsonAirlines[i].equals("airFrance")){
-                        a=new JButton(""); 
-                        a.setBounds(ancho/2+10,alto/2-60,340,100);
-                        a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
-                        a.setBorder(new LineBorder(Color.BLACK));
-                        a.setBackground(Color.white);
-                        add(a);
-                        a.addActionListener(this);
-                    }
-
-                    if(s.jsonAirlines[i].equals("avianca")){
-                        b=new JButton("");
-                        b.setBounds(ancho/2+10,alto/2-60,340,100);
-                        b.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/av.png")));
-                        b.setBorder(new LineBorder(Color.BLACK));
-                        b.setBackground(Color.white);
-                        add(b);
-                        b.addActionListener(this);
-                    }
-
-                    if(s.jsonAirlines[i].equals("klm")){
-                        c=new JButton("");
-                        c.setBounds(ancho/2+10,alto/2-60,340,100);
-                        c.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/KLM.jpg")));
-                        c.setBorder(new LineBorder(Color.BLACK));
-                        c.setBackground(Color.white);
-                        add(c);
-                        c.addActionListener(this);
-                    }
-                    if(s.jsonAirlines[i].equals("aeroMexico")){
-                        d=new JButton("");
-                        d.setBounds(ancho/2+10,alto/2-60,340,100);
-                        d.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/aeroMexico.png")));
-                        d.setBorder(new LineBorder(Color.BLACK));
-                        d.setBackground(Color.white);
-                        add(d);
-                        d.addActionListener(this);
-                    }
-                }
-                
-                if(i==1){
-                    if(s.jsonAirlines[i].equals("airFrance")){
-                        a=new JButton(""); 
-                        a.setBounds(ancho/2-360,alto/2-60,340,100);
-                        a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
-                        a.setBorder(new LineBorder(Color.BLACK));
-                        a.setBackground(Color.white);
-                        add(a);
-                        a.addActionListener(this);
-                   
-                    }
-
-                    if(s.jsonAirlines[i].equals("avianca")){
-                        b=new JButton("");
-                        b.setBounds(ancho/2-360,alto/2-60,340,100);
-                        b.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/av.png")));
-                        b.setBorder(new LineBorder(Color.BLACK));
-                        b.setBackground(Color.white);
-                        add(b);
-                        b.addActionListener(this);
-                  
-                    }
-
-                    if(s.jsonAirlines[i].equals("klm")){
-                        c=new JButton("");
-                        c.setBounds(ancho/2-360,alto/2-60,340,100);
-                        c.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/KLM.jpg")));
-                        c.setBorder(new LineBorder(Color.BLACK));
-                        c.setBackground(Color.white);
-                        add(c);
-                        c.addActionListener(this);
-               
-                    }
-                    if(s.jsonAirlines[i].equals("aeroMexico")){
-                        d=new JButton("");
-                        d.setBounds(ancho/2-360,alto/2-60,340,100);
-                        d.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/aeroMexico.png")));
-                        d.setBorder(new LineBorder(Color.BLACK));
-                        d.setBackground(Color.white);
-                        add(d);
-                        d.addActionListener(this);
-               
-                    }
-                }               
-            }
-            
-             if(s.jsonAirlines.length==1){                                       
-                if(s.jsonAirlines[i].equals("airFrance")){
-                    a=new JButton(""); 
-                    a.setBounds(ancho/2-170,alto/2-50,340,100);
-                    a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
+        for (int i=0;i<s.json_airlines.length;i++) 
+        {  
+            if(s.json_airlines.length==4)
+            {               
+                if (i==0)
+                {
+                    a = new JButton(s.json_airlines[i]);              
+                    a.setBounds(ancho/2+40,alto/2-100,340,100);
+                    //a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
                     a.setBorder(new LineBorder(Color.BLACK));
                     a.setBackground(Color.white);
                     add(a);
-                    a.addActionListener(this);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[0]+"");		
+                        }	
+                        });
+                    }
+                
+           
+                if(i==1)
+                {
+                    a = new JButton(s.json_airlines[i]);  
+                    a.setBounds(ancho/2+40,alto/2+50,340,100);
+                    a.setBorder(new LineBorder(Color.BLACK));
+                    a.setBackground(Color.white);
+                    add(a);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[1]+"");		
+                        }	
+                        });
                 }
+                if(i==2)
+                {
+                    a = new JButton(s.json_airlines[i]);  
+                    a.setBounds(ancho/2-350,alto/2+50,340,100);
+                    a.setBorder(new LineBorder(Color.BLACK));
+                    a.setBackground(Color.white);
+                    add(a);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[2]+"");		
+                        }	
+                        });
+                }
+                if(i==3)
+                {
+                    a = new JButton(s.json_airlines[i]);  
+                    a.setBounds(ancho/2-350,alto/2-100,340,100);
+                    a.setBorder(new LineBorder(Color.BLACK));
+                    a.setBackground(Color.white);
+                    add(a);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[3]+"");		
+                        }	
+                        });
+                }           
+            }
+            
+            
+            if(s.json_airlines.length == 3)
+            {
+                if(i==0) 
+                {
+                    a = new JButton(s.json_airlines[i]);  
+                    a.setBounds(ancho/2-170,alto/2-60,340,100);
+                    a.setBorder(new LineBorder(Color.BLACK));
+                    a.setBackground(Color.white);
+                    add(a);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[0]+"");		
+                    }	
+                    });                                
+                     
+                }
+                if(i==1)
+                { 
+                    a = new JButton(s.json_airlines[i]);  
+                    a.setBounds(ancho/2-520,alto/2-60,340,100);
+                    a.setBorder(new LineBorder(Color.BLACK));
+                    a.setBackground(Color.white);
+                    add(a);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[1]+"");		
+                    }	
+                    }); 
+                   
+                    
+                    
+                }
+                if(i==2)
+                {
+                    a = new JButton(s.json_airlines[i]);  
+                    a.setBounds(ancho/2+180,alto/2-60,340,100);
+                    a.setBorder(new LineBorder(Color.BLACK));
+                    a.setBackground(Color.white);
+                    add(a);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[2]+"");		
+                    }	
+                    });                               
+                }
+            }
+            
+            if(s.json_airlines.length==2)
+            {                      
+                if(i==0)
+                {                  
+                    a = new JButton(s.json_airlines[i]);  
+                    a.setBounds(ancho/2+10,alto/2-60,340,100);
+                    a.setBorder(new LineBorder(Color.BLACK));
+                    a.setBackground(Color.white);
+                    add(a);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[0]+"");		
+                    }	
+                    });                                    
 
-                if(s.jsonAirlines[i].equals("avianca")){
-                    b=new JButton("");
-                    b.setBounds(ancho/2-170,alto/2-50,340,100);
-                    b.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/av.png")));
-                    b.setBorder(new LineBorder(Color.BLACK));
-                    b.setBackground(Color.white);
-                    add(b);
-                    b.addActionListener(this);
-                }
-
-                if(s.jsonAirlines[i].equals("klm")){
-                    c=new JButton("");
-                    c.setBounds(ancho/2-170,alto/2-50,340,100);
-                    c.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/KLM.jpg")));
-                    c.setBorder(new LineBorder(Color.BLACK));
-                    c.setBackground(Color.white);
-                    add(c);
-                    c.addActionListener(this);
-                }
-                if(s.jsonAirlines[i].equals("aeroMexico")){
-                    d=new JButton("");
-                    d.setBounds(ancho/2-170,alto/2-50,340,100);
-                    d.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/aeroMexico.png")));
-                    d.setBorder(new LineBorder(Color.BLACK));
-                    d.setBackground(Color.white);
-                    add(d);
-                    d.addActionListener(this);
                 }
                 
+                if(i==1)
+                {        
+                    a = new JButton(s.json_airlines[i]);  
+                    a.setBounds(ancho/2-360,alto/2-60,340,100);
+                    a.setBorder(new LineBorder(Color.BLACK));
+                    a.setBackground(Color.white);
+                    add(a);
+                    a.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                       
+                       abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[1]+"");		
+                    }	
+                    });                                      
+                }               
+            }
+            
+             if(s.json_airlines.length==1)
+             {                                       
+                a = new JButton(s.json_airlines[i]);  
+                a.setBounds(ancho/2-170,alto/2-50,340,100);
+                a.setBorder(new LineBorder(Color.BLACK));
+                a.setBackground(Color.white);
+                add(a);
+                a.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {                       
+                   abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[0]+"");		
+                }	
+                });  
+           
              }
+            
+            
             this.setIconImage(new ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/InkIcon.png")).getImage()); 
             this.getContentPane().setBackground(Color.white);
             //this.setResizable(false);
@@ -381,44 +248,30 @@ public class window extends javax.swing.JFrame implements ActionListener, Runnab
             //this.setAlwaysOnTop(false);
             //this.setFocusable(false);
             //this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
- 
+            
         }             
     }
     
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==a) {
-            abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/inkairFrance.rdp");
-        }
-        
-        if (e.getSource()==b) {
-            abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/inkavianca.rdp");
-        }
-        if (e.getSource()==c) {
-            abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/inkklm.rdp");
-        }
-        if (e.getSource()==d) {
-            abrirarchivo(fichero.getAbsolutePath()+"/build/classes/files/inkaeroMexico.rdp");
-        }
-    }
     
+    public void abrirarchivo(String archivo)
+    {
 
-
-    
-    public void abrirarchivo(String archivo){
-
-     try {
+     try 
+     {
 
             File objetofile = new File (archivo);
             Desktop.getDesktop().open(objetofile);
 
-     }catch (IOException ex) {
+     }catch (IOException ex) 
+     {
 
             System.out.println(ex);
 
         }
     }
     
-    public void server() throws FileNotFoundException, UnsupportedEncodingException{
+    public void server() throws FileNotFoundException, UnsupportedEncodingException
+    {
         server s =new server();
         s.get_json();
     }
@@ -460,7 +313,8 @@ public class window extends javax.swing.JFrame implements ActionListener, Runnab
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -485,13 +339,18 @@ public class window extends javax.swing.JFrame implements ActionListener, Runnab
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
+                try 
+                {
                     new window().setVisible(true);
-                } catch (FileNotFoundException ex) {
+                } catch (FileNotFoundException ex) 
+                {
                     Logger.getLogger(window.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UnsupportedEncodingException ex) {
+                } catch (UnsupportedEncodingException ex) 
+                {
                     Logger.getLogger(window.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -501,8 +360,8 @@ public class window extends javax.swing.JFrame implements ActionListener, Runnab
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void run() {
+    public void run() 
+    {
         
     }
 

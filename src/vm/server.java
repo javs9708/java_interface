@@ -9,8 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
@@ -26,7 +24,8 @@ public class server
   String screen_mode;
   String connection_bar;
   String username;
-  public String[] jsonAirlines;
+  public String[] json_airlines;
+  public String[] rdp_airlines;
   
   public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
   {
@@ -91,7 +90,7 @@ public class server
 
 
         Object[] params = new Object[1];
-        params[0] = "";
+        params[0]       = "";
 
         R =  this.execute_xmlrpc_string_result("get_json", params);
         if (R == null)
@@ -102,27 +101,32 @@ public class server
             JsonParser parser = new JsonParser();
             JsonArray gsonArr = parser.parse(R).getAsJsonArray();
             int c=0;
-            for (JsonElement obj : gsonArr) {
+            for (JsonElement obj : gsonArr) 
+            {
                 c++;
             }
-            jsonAirlines = new String[c];
+            json_airlines = new String[c];
+            rdp_airlines  = new String[c];
+            
             int i=0;
             File fichero = new File(".");
-            for (JsonElement obj : gsonArr) {                      
+            for (JsonElement obj : gsonArr) 
+            {                      
                 // Object of array
                 JsonObject gsonObj = obj.getAsJsonObject();     
                 
       
-                name_airline = gsonObj.get("nombre_aerolinea").getAsString();
-                jsonAirlines[i]=name_airline;
+                name_airline     = gsonObj.get("nombre_aerolinea").getAsString();
+                json_airlines[i] = name_airline;
+                rdp_airlines[i]  = "ink"+name_airline+".rdp";
                 i++;
                 writer = new PrintWriter(fichero.getAbsolutePath()+"/build/classes/files/ink"+name_airline +".rdp", "UTF-8");
                 // Primitives elements of object                
-                fulladdress = gsonObj.get("direccion").getAsString();
-                credentials = gsonObj.get("credenciales").getAsString();
-                screen_mode = gsonObj.get("pantalla").getAsString();
+                fulladdress    = gsonObj.get("direccion").getAsString();
+                credentials    = gsonObj.get("credenciales").getAsString();
+                screen_mode    = gsonObj.get("pantalla").getAsString();
                 connection_bar = gsonObj.get("barra_conexion").getAsString();
-                username = gsonObj.get("nombre_usuario").getAsString();
+                username       = gsonObj.get("nombre_usuario").getAsString();
       
                 writer.println(fulladdress);
                 writer.println(credentials);
@@ -132,14 +136,7 @@ public class server
                 writer.close();
             }  
         }
-    }     
-          
-
-          
-      
-      
-
+    }         
   }
-
 }
 
