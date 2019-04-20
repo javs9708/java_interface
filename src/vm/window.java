@@ -29,8 +29,8 @@ public class window extends javax.swing.JFrame implements ActionListener
     int alto             = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int i                = 0;
     int c                = 0;
-    int x                = 300;
-    int y                = 300;
+    int x                = 150;
+    int y                = 200;
 
     File fichero = new File(".");
         
@@ -95,7 +95,7 @@ public class window extends javax.swing.JFrame implements ActionListener
                 //a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
                 button.setBorder(new LineBorder(Color.BLACK));
                 button.setBackground(Color.white);
-                if(ancho-(button.getX()+240)<=300)
+                if(ancho-(button.getX()+240)<=150)
                 {
                   y+=140;  
                   x=300;
