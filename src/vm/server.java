@@ -25,7 +25,6 @@ public class server
   String connection_bar;
   String username;
   public String[] json_airlines;
-  public String[] rdp_airlines;
   
   public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
   {
@@ -106,7 +105,6 @@ public class server
                 c++;
             }
             json_airlines = new String[c];
-            rdp_airlines  = new String[c];
             
             int i=0;
             File fichero = new File(".");
@@ -114,11 +112,9 @@ public class server
             {                      
                 // Object of array
                 JsonObject gsonObj = obj.getAsJsonObject();     
-                
-      
+                    
                 name_airline     = gsonObj.get("nombre_aerolinea").getAsString();
                 json_airlines[i] = name_airline;
-                rdp_airlines[i]  = "ink"+name_airline+".rdp";
                 i++;
                 writer = new PrintWriter(fichero.getAbsolutePath()+"/build/classes/files/ink"+name_airline +".rdp", "UTF-8");
                 // Primitives elements of object                

@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-public class window extends javax.swing.JFrame
+public class window extends javax.swing.JFrame implements ActionListener
 {
     
     JButton button;
@@ -27,7 +29,7 @@ public class window extends javax.swing.JFrame
     int alto             = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int i                = 0;
     int c                = 0;
-    int x                = 100;
+    int x                = 300;
     int y                = 300;
 
     File fichero = new File(".");
@@ -40,7 +42,7 @@ public class window extends javax.swing.JFrame
         
         server s = new server();
         s.get_json();    
-       
+        
         if(s.json_airlines.length!=0)
         {
             JLabel titleLabel;
@@ -88,24 +90,22 @@ public class window extends javax.swing.JFrame
         {  
             if(s.json_airlines.length>4)
             {   
-                if(i==c)
+                button = new JButton(s.json_airlines[i]);              
+                button.setBounds(x,y,240,80);
+                //a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
+                button.setBorder(new LineBorder(Color.BLACK));
+                button.setBackground(Color.white);
+                if(ancho-(button.getX()+240)<=300)
                 {
-                    button = new JButton(s.json_airlines[i]);              
-                    button.setBounds(x,y,150,100);
-                    //a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
-                    button.setBorder(new LineBorder(Color.BLACK));
-                    button.setBackground(Color.white);
-                    add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                                        
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[c-1]+"");
-                    }});
-                    x+=200;
-                    c++;
-                }
-                
+                  y+=140;  
+                  x=300;
+                  button.setBounds(x,y,240,80);
+                }   
+                add(button);
+                button.addActionListener(this);
+                            
+                x+=300;
+                                
             }
             if(s.json_airlines.length==4)
             {               
@@ -117,14 +117,9 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[0]+"");		
-                    }});	
-                        
-                    }
+                    button.addActionListener(this);                    
+                    
+                }
                 
            
                 if(i==1)
@@ -134,13 +129,7 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[1]+"");		
-                    }});	
-                        
+                    button.addActionListener(this);                       
                 }
                 if(i==2)
                 {
@@ -149,13 +138,7 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[2]+"");		
-                    }});	
-                        
+                    button.addActionListener(this);	                       
                 }
                 if(i==3)
                 {
@@ -164,13 +147,7 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[3]+"");		
-                    }});	
-                        
+                    button.addActionListener(this);	                        
                 }           
             }
             
@@ -184,14 +161,7 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[0]+"");		
-                    }});	
-                                                    
-                     
+                    button.addActionListener(this);                                                                         
                 }
                 if(i==1)
                 { 
@@ -200,16 +170,7 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[1]+"");		
-                    }});	
-                     
-                   
-                    
-                    
+                    button.addActionListener(this);       
                 }
                 if(i==2)
                 {
@@ -218,13 +179,7 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[2]+"");		
-                    }});	
-                                                   
+                    button.addActionListener(this);                              
                 }
             }
             
@@ -237,14 +192,7 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[0]+"");		
-                    }});	
-                                                        
-
+                    button.addActionListener(this);
                 }
                 
                 if(i==1)
@@ -254,13 +202,7 @@ public class window extends javax.swing.JFrame
                     button.setBorder(new LineBorder(Color.BLACK));
                     button.setBackground(Color.white);
                     add(button);
-                    button.addActionListener(new ActionListener() 
-                    {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                       open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[1]+"");		
-                    }});	
-                                                          
+                    button.addActionListener(this);                                       
                 }               
             }
             
@@ -271,31 +213,25 @@ public class window extends javax.swing.JFrame
                 button.setBorder(new LineBorder(Color.BLACK));
                 button.setBackground(Color.white);
                 add(button);
-                button.addActionListener(new ActionListener() 
-                {
-                public void actionPerformed(ActionEvent e) 
-                {                       
-                   open_file(fichero.getAbsolutePath()+"/build/classes/files/"+s.rdp_airlines[0]+"");		
-                }});	
-                  
-           
+                button.addActionListener(this);
              }
-            
-            
+                      
             this.setIconImage(new ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/InkIcon.png")).getImage()); 
             this.getContentPane().setBackground(Color.white);
             //this.setResizable(false);
             this.setExtendedState(this.MAXIMIZED_BOTH);
             //this.setAlwaysOnTop(false);
             //this.setFocusable(false);
-            //this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
-            
+            //this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);           
             i++;
-        }
-        
-        
+        }       
     }
     
+    @Override
+    public void actionPerformed(ActionEvent e) 
+    {
+        open_file(fichero.getAbsolutePath()+"/build/classes/files/ink"+e.getActionCommand()+".rdp");	
+    }
     
     public void open_file(String archivo)
     {
@@ -408,6 +344,9 @@ public class window extends javax.swing.JFrame
     {
         
     }
+
+    
+
 
     
 }
