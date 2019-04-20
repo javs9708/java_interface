@@ -98,7 +98,7 @@ public class window extends javax.swing.JFrame implements ActionListener
                 if(ancho-(button.getX()+240)<=150)
                 {
                   y+=140;  
-                  x=300;
+                  x=150;
                   button.setBounds(x,y,240,80);
                 }   
                 add(button);
