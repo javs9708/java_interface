@@ -4,17 +4,19 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -34,7 +36,7 @@ public class window extends javax.swing.JFrame implements ActionListener
 
     File fichero = new File(".");
         
-    public window() throws FileNotFoundException, UnsupportedEncodingException  
+    public window() throws FileNotFoundException, UnsupportedEncodingException, IOException  
     {
         this.setUndecorated(true);
         initComponents();         
@@ -90,9 +92,21 @@ public class window extends javax.swing.JFrame implements ActionListener
         {  
             if(s.json_airlines.length>4)
             {   
-                button = new JButton(s.json_airlines[i]);              
-                button.setBounds(x,y,240,80);
-                //a.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
+                button = new JButton(s.json_airlines[i]);    
+                button.setBounds(x,y,240,80);              
+                /*try 
+                {
+                    URL url;
+                    Image imagen = null;
+                    url = new URL("https://res-5.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1416652375/af5n0qd2e567wi0z7ell.png");
+                    imagen = ImageIO.read(url);
+                    button.setIcon(new ImageIcon(imagen));
+                } catch (MalformedURLException ex) 
+                {
+                    Logger.getLogger(window.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                */
+                //button.setIcon(new javax.swing.ImageIcon((fichero.getAbsolutePath()+"/build/classes/files/af.png")));
                 button.setBorder(new LineBorder(Color.BLACK));
                 button.setBackground(Color.white);
                 if(ancho-(button.getX()+240)<=150)
@@ -331,6 +345,8 @@ public class window extends javax.swing.JFrame implements ActionListener
                     Logger.getLogger(window.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (UnsupportedEncodingException ex) 
                 {
+                    Logger.getLogger(window.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
                     Logger.getLogger(window.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
